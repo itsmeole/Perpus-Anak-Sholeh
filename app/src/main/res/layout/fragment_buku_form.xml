@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Bottom Sheet Drag Handle -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#FFE6E6E6"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvFormTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tambah Buku"
+            android:textSize="@dimen/text_subtitle"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="16dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilJudul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:hint="@string/judul_buku"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="@dimen/button_radius"
+            app:boxCornerRadiusTopEnd="@dimen/button_radius"
+            app:boxCornerRadiusBottomStart="@dimen/button_radius"
+            app:boxCornerRadiusBottomEnd="@dimen/button_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etJudul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPenulis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:hint="@string/penulis"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="@dimen/button_radius"
+            app:boxCornerRadiusTopEnd="@dimen/button_radius"
+            app:boxCornerRadiusBottomStart="@dimen/button_radius"
+            app:boxCornerRadiusBottomEnd="@dimen/button_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPenulis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPenerbit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:hint="@string/penerbit"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="@dimen/button_radius"
+            app:boxCornerRadiusTopEnd="@dimen/button_radius"
+            app:boxCornerRadiusBottomStart="@dimen/button_radius"
+            app:boxCornerRadiusBottomEnd="@dimen/button_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPenerbit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilKategori"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:hint="@string/kategori"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="@dimen/button_radius"
+            app:boxCornerRadiusTopEnd="@dimen/button_radius"
+            app:boxCornerRadiusBottomStart="@dimen/button_radius"
+            app:boxCornerRadiusBottomEnd="@dimen/button_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etKategori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTahunTerbit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_lg"
+            android:hint="@string/tahun_terbit"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="@dimen/button_radius"
+            app:boxCornerRadiusTopEnd="@dimen/button_radius"
+            app:boxCornerRadiusBottomStart="@dimen/button_radius"
+            app:boxCornerRadiusBottomEnd="@dimen/button_radius">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTahunTerbit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSimpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/simpan"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/button_radius" />
+
+    </LinearLayout>
+</ScrollView>

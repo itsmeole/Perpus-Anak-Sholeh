@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <!-- Dashboard -->
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.perpusanaksholeh.ui.dashboard.DashboardFragment"
+        android:label="@string/nav_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <!-- Siswa -->
+    <fragment
+        android:id="@+id/siswaListFragment"
+        android:name="com.example.perpusanaksholeh.ui.siswa.SiswaListFragment"
+        android:label="@string/nav_siswa"
+        tools:layout="@layout/fragment_siswa_list">
+        <action
+            android:id="@+id/action_siswaList_to_siswaForm"
+            app:destination="@id/siswaFormFragment" />
+        <action
+            android:id="@+id/action_siswaList_to_siswaDetail"
+            app:destination="@id/siswaDetailFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/siswaFormFragment"
+        android:name="com.example.perpusanaksholeh.ui.siswa.SiswaFormFragment"
+        android:label="@string/tambah_siswa"
+        tools:layout="@layout/fragment_siswa_form">
+        <argument
+            android:name="siswaId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="defaultTipe"
+            app:argType="string"
+            android:defaultValue="siswa" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/siswaDetailFragment"
+        android:name="com.example.perpusanaksholeh.ui.siswa.SiswaDetailFragment"
+        android:label="@string/detail_siswa"
+        tools:layout="@layout/fragment_siswa_detail">
+        <argument
+            android:name="siswaId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_siswaDetail_to_siswaForm"
+            app:destination="@id/siswaFormFragment" />
+    </fragment>
+
+    <!-- Buku -->
+    <fragment
+        android:id="@+id/bukuListFragment"
+        android:name="com.example.perpusanaksholeh.ui.buku.BukuListFragment"
+        android:label="@string/nav_buku"
+        tools:layout="@layout/fragment_buku_list">
+        <action
+            android:id="@+id/action_bukuList_to_bukuForm"
+            app:destination="@id/bukuFormFragment" />
+        <action
+            android:id="@+id/action_bukuList_to_bukuDetail"
+            app:destination="@id/bukuDetailFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/bukuFormFragment"
+        android:name="com.example.perpusanaksholeh.ui.buku.BukuFormFragment"
+        android:label="@string/tambah_buku"
+        tools:layout="@layout/fragment_buku_form">
+        <argument
+            android:name="bukuId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/bukuDetailFragment"
+        android:name="com.example.perpusanaksholeh.ui.buku.BukuDetailFragment"
+        android:label="@string/detail_buku"
+        tools:layout="@layout/fragment_buku_detail">
+        <argument
+            android:name="bukuId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_bukuDetail_to_bukuForm"
+            app:destination="@id/bukuFormFragment" />
+    </fragment>
+
+    <!-- Peminjaman -->
+    <fragment
+        android:id="@+id/peminjamanListFragment"
+        android:name="com.example.perpusanaksholeh.ui.peminjaman.PeminjamanListFragment"
+        android:label="@string/nav_peminjaman"
+        tools:layout="@layout/fragment_peminjaman_list">
+        <action
+            android:id="@+id/action_peminjamanList_to_peminjaman"
+            app:destination="@id/peminjamanFragment" />
+        <action
+            android:id="@+id/action_peminjamanList_to_pengembalian"
+            app:destination="@id/pengembalianFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/peminjamanFragment"
+        android:name="com.example.perpusanaksholeh.ui.peminjaman.PeminjamanFragment"
+        android:label="@string/pinjam_buku"
+        tools:layout="@layout/fragment_peminjaman" />
+
+    <fragment
+        android:id="@+id/pengembalianFragment"
+        android:name="com.example.perpusanaksholeh.ui.peminjaman.PengembalianFragment"
+        android:label="@string/kembalikan_buku"
+        tools:layout="@layout/fragment_pengembalian" />
+
+    <!-- Profile -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.perpusanaksholeh.ui.profile.ProfileFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dashboardFragment"
+        android:icon="@drawable/ic_dashboard"
+        android:title="@string/nav_dashboard" />
+    <item
+        android:id="@+id/bukuListFragment"
+        android:icon="@drawable/ic_book"
+        android:title="@string/nav_buku" />
+    <item
+        android:id="@+id/siswaListFragment"
+        android:icon="@drawable/ic_assignment"
+        android:title="@string/nav_siswa" />
+    <item
+        android:id="@+id/peminjamanListFragment"
+        android:icon="@drawable/ic_swap"
+        android:title="@string/nav_peminjaman" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_person"
+        android:title="Profil" />
+</menu>

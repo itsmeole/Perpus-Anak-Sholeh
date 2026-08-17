@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Perpus Anak Sholeh</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_buku">Buku</string>
+    <string name="nav_siswa">Pengunjung</string>
+    <string name="nav_peminjaman">Pinjam</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Dashboard Perpustakaan</string>
+    <string name="total_siswa">Total Pengunjung</string>
+    <string name="total_buku">Total Judul Buku</string>
+    <string name="total_eksemplar">Total Eksemplar</string>
+    <string name="peminjaman_aktif">Peminjaman Aktif</string>
+    <string name="buku_terlambat">Buku Terlambat</string>
+
+    <!-- Siswa -->
+    <string name="tambah_siswa">Tambah Pengunjung</string>
+    <string name="edit_siswa">Edit Pengunjung</string>
+    <string name="detail_siswa">Detail Pengunjung</string>
+    <string name="nomor_kartu">Nomor Kartu</string>
+    <string name="nama_siswa">Nama Lengkap</string>
+    <string name="barcode_siswa">Barcode Pengunjung</string>
+    <string name="cari_siswa">Cari pengunjung...</string>
+    <string name="hapus_siswa">Hapus Pengunjung</string>
+    <string name="konfirmasi_hapus_siswa">Apakah Anda yakin ingin menghapus pengunjung ini?</string>
+
+    <!-- Buku -->
+    <string name="tambah_buku">Tambah Buku</string>
+    <string name="edit_buku">Edit Buku</string>
+    <string name="detail_buku">Detail Buku</string>
+    <string name="judul_buku">Judul Buku</string>
+    <string name="penulis">Penulis</string>
+    <string name="penerbit">Penerbit</string>
+    <string name="kategori">Kategori/Genre</string>
+    <string name="tahun_terbit">Tahun Terbit</string>
+    <string name="cari_buku">Cari buku...</string>
+    <string name="hapus_buku">Hapus Buku</string>
+    <string name="konfirmasi_hapus_buku">Apakah Anda yakin ingin menghapus buku ini beserta semua eksemplarnya?</string>
+
+    <!-- Eksemplar -->
+    <string name="tambah_eksemplar">Tambah Eksemplar</string>
+    <string name="barcode_eksemplar">Barcode Eksemplar</string>
+    <string name="jumlah_eksemplar">Jumlah Eksemplar</string>
+    <string name="eksemplar_tersedia">Tersedia</string>
+    <string name="eksemplar_dipinjam">Dipinjam</string>
+    <string name="hapus_eksemplar">Hapus Eksemplar</string>
+    <string name="konfirmasi_hapus_eksemplar">Apakah Anda yakin ingin menghapus eksemplar ini?</string>
+
+    <!-- Peminjaman -->
+    <string name="pinjam_buku">Pinjam Buku</string>
+    <string name="kembalikan_buku">Kembalikan Buku</string>
+    <string name="riwayat_peminjaman">Riwayat Peminjaman</string>
+    <string name="scan_siswa">Scan Barcode Siswa</string>
+    <string name="scan_buku">Scan Barcode Buku</string>
+    <string name="durasi_pinjam">Durasi Pinjam (hari)</string>
+    <string name="tanggal_pinjam">Tanggal Pinjam</string>
+    <string name="tanggal_jatuh_tempo">Jatuh Tempo</string>
+    <string name="tanggal_kembali">Tanggal Kembali</string>
+    <string name="denda">Denda</string>
+    <string name="status">Status</string>
+    <string name="konfirmasi_pinjam">Konfirmasi Peminjaman</string>
+    <string name="konfirmasi_kembali">Konfirmasi Pengembalian</string>
+
+    <!-- Scanner -->
+    <string name="scanner_title">Scan Barcode</string>
+    <string name="scanner_hint">Arahkan kamera ke barcode</string>
+
+    <!-- Common -->
+    <string name="simpan">Simpan</string>
+    <string name="batal">Batal</string>
+    <string name="hapus">Hapus</string>
+    <string name="ya">Ya</string>
+    <string name="tidak">Tidak</string>
+    <string name="scan_barcode">Scan Barcode</string>
+    <string name="generate_barcode">Generate Barcode</string>
+    <string name="barcode">Barcode</string>
+    <string name="data_kosong">Belum ada data</string>
+    <string name="proses">Proses</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="tutup">Tutup</string>
+
+    <!-- Format -->
+    <string name="format_denda">Rp %,d</string>
+    <string name="format_eksemplar">%d eksemplar (%d tersedia)</string>
+</resources>

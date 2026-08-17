@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors - Teal Theme -->
+    <color name="primary">#2B7D77</color>
+    <color name="primary_light">#EAF4F3</color>
+    <color name="primary_dark">#1D5450</color>
+    <color name="primary_variant">#246964</color>
+
+    <!-- Secondary Colors -->
+    <color name="secondary">#FFFFD54F</color>
+    <color name="secondary_light">#FFFFE082</color>
+    <color name="secondary_dark">#FFFFA000</color>
+
+    <!-- Background Colors -->
+    <color name="background">#FFF7F9FA</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="card_background">#FFFFFFFF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#FF1A1C1E</color>
+    <color name="text_secondary">#FF5F6368</color>
+    <color name="text_on_primary">#FFFFFFFF</color>
+    <color name="text_hint">#FFA8AAAA</color>
+
+    <!-- Status Colors -->
+    <color name="status_tersedia">#FF4CAF50</color>
+    <color name="status_dipinjam">#FFFF9800</color>
+    <color name="status_terlambat">#FFF44336</color>
+    <color name="status_dikembalikan">#FF2196F3</color>
+
+    <!-- Dashboard Card Colors (Clean Gray Backgrounds and Teal Texts) -->
+    <color name="card_siswa_bg">#FFF7F7F7</color>
+    <color name="card_siswa_text">#FF2B7D77</color>
+
+    <color name="card_buku_bg">#FFF7F7F7</color>
+    <color name="card_buku_text">#FF2B7D77</color>
+
+    <color name="card_peminjaman_bg">#FFF7F7F7</color>
+    <color name="card_peminjaman_text">#FF2B7D77</color>
+
+    <color name="card_terlambat_bg">#FFF7F7F7</color>
+    <color name="card_terlambat_text">#FF2B7D77</color>
+
+    <color name="card_eksemplar_bg">#FFF7F7F7</color>
+    <color name="card_eksemplar_text">#FF2B7D77</color>
+
+    <!-- Other -->
+    <color name="divider">#FFE6E6E6</color>
+    <color name="ripple">#15000000</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="scanner_overlay">#80000000</color>
+    <color name="scanner_frame">#2B7D77</color>
+</resources>
