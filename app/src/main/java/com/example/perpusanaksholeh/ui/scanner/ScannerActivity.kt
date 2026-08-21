@@ -144,13 +144,42 @@ class ScannerActivity : AppCompatActivity() {
                 imageProxy.imageInfo.rotationDegrees
             )
 
-            val scanner = BarcodeScanning.getClient()
+            val options = com.google.mlkit.vision.barcode.BarcodeScannerOptions.Builder()
+                .setBarcodeFormats(
+                    Barcode.FORMAT_EAN_13,
+                    Barcode.FORMAT_EAN_8,
+                    Barcode.FORMAT_CODE_128,
+                    Barcode.FORMAT_CODE_39,
+                    Barcode.FORMAT_UPC_A,
+                    Barcode.FORMAT_UPC_E,
+                    Barcode.FORMAT_CODABAR
+                )
+                .build()
+            val scanner = BarcodeScanning.getClient(options)
             scanner.process(image)
                 .addOnSuccessListener { barcodes ->
                     for (barcode in barcodes) {
                         val rawValue = barcode.rawValue
                         if (rawValue != null) {
+                            val box = barcode.boundingBox
+                            if (box != null) {
+                                val imgW = imageProxy.width
+                                val imgH = imageProxy.height
+                                val centerX = box.centerX()
+                                val centerY = box.centerY()
+                                val minX = imgW * 0.2
+                                val maxX = imgW * 0.8
+                                val minY = imgH * 0.2
+                                val maxY = imgH * 0.8
+                                if (centerX < minX || centerX > maxX || centerY < minY || centerY > maxY) {
+                                    continue
+                                }
+                            }
+
                             if (isContinuous) {
+                                if (scannedBarcodes.contains(rawValue)) {
+                                    continue
+                                }
                                 val now = System.currentTimeMillis()
                                 if (rawValue == lastScannedBarcode && now - lastScanTime < 2000) {
                                     continue
@@ -158,19 +187,17 @@ class ScannerActivity : AppCompatActivity() {
                                 lastScannedBarcode = rawValue
                                 lastScanTime = now
 
-                                if (!scannedBarcodes.contains(rawValue)) {
-                                    scannedBarcodes.add(rawValue)
-                                    val vibrator = getSystemService(android.content.Context.VIBRATOR_SERVICE) as? android.os.Vibrator
-                                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                                        vibrator?.vibrate(android.os.VibrationEffect.createOneShot(100, android.os.VibrationEffect.DEFAULT_AMPLITUDE))
-                                    } else {
-                                        @Suppress("DEPRECATION")
-                                        vibrator?.vibrate(100)
-                                    }
-                                    runOnUiThread {
-                                        Toast.makeText(this, "Tercatat: $rawValue", Toast.LENGTH_SHORT).show()
-                                        updateDoneButtonText()
-                                    }
+                                scannedBarcodes.add(rawValue)
+                                val vibrator = getSystemService(android.content.Context.VIBRATOR_SERVICE) as? android.os.Vibrator
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                    vibrator?.vibrate(android.os.VibrationEffect.createOneShot(100, android.os.VibrationEffect.DEFAULT_AMPLITUDE))
+                                } else {
+                                    @Suppress("DEPRECATION")
+                                    vibrator?.vibrate(100)
+                                }
+                                runOnUiThread {
+                                    Toast.makeText(this, "Tercatat: $rawValue", Toast.LENGTH_SHORT).show()
+                                    updateDoneButtonText()
                                 }
                             } else {
                                 if (!isScanned) {

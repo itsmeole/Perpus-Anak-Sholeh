@@ -30,6 +30,9 @@ interface SiswaDao {
     @Query("SELECT * FROM siswa WHERE barcode = :barcode")
     suspend fun getByBarcode(barcode: String): Siswa?
 
+    @Query("SELECT * FROM siswa WHERE nama_siswa LIKE '%' || :query || '%' OR barcode = :query OR nomor_kartu = :query ORDER BY nama_siswa ASC")
+    suspend fun searchSiswaSync(query: String): List<Siswa>
+
     @Query("SELECT * FROM siswa WHERE nama_siswa LIKE '%' || :query || '%' OR nomor_kartu LIKE '%' || :query || '%' ORDER BY nama_siswa ASC")
     fun search(query: String): LiveData<List<Siswa>>
 

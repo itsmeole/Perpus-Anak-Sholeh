@@ -161,8 +161,9 @@ class BukuDetailFragment : Fragment() {
         dialogBinding.btnScan.setOnClickListener {
             dialogMultipleBarcodeCallback = { barcodes ->
                 if (barcodes.isNotEmpty()) {
-                    viewModel.addMultipleEksemplar(currentBukuId, barcodes)
-                    dialog.dismiss()
+                    val joined = barcodes.joinToString("\n")
+                    dialogBinding.etBarcode.setText(joined)
+                    Toast.makeText(requireContext(), "${barcodes.size} barcode terpilih. Silakan tinjau sebelum disimpan.", Toast.LENGTH_LONG).show()
                 }
             }
             val intent = Intent(requireContext(), ScannerActivity::class.java).apply {
@@ -177,12 +178,23 @@ class BukuDetailFragment : Fragment() {
         }
 
         dialogBinding.btnSimpan.setOnClickListener {
-            val barcode = dialogBinding.etBarcode.text.toString().trim()
-            if (barcode.isEmpty()) {
+            val rawText = dialogBinding.etBarcode.text.toString().trim()
+            if (rawText.isEmpty()) {
                 dialogBinding.tilBarcode.error = "Barcode wajib diisi"
                 return@setOnClickListener
             }
-            viewModel.addEksemplar(currentBukuId, barcode)
+            val barcodes = rawText.split(Regex("[\\n,]+"))
+                .map { it.trim() }
+                .filter { it.isNotEmpty() }
+            if (barcodes.isEmpty()) {
+                dialogBinding.tilBarcode.error = "Barcode wajib diisi"
+                return@setOnClickListener
+            }
+            if (barcodes.size == 1) {
+                viewModel.addEksemplar(currentBukuId, barcodes[0])
+            } else {
+                viewModel.addMultipleEksemplar(currentBukuId, barcodes)
+            }
             dialog.dismiss()
         }
 

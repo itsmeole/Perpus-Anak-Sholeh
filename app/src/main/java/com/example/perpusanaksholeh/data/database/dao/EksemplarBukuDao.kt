@@ -20,6 +20,9 @@ interface EksemplarBukuDao {
     @Query("SELECT * FROM eksemplar_buku WHERE barcode = :barcode")
     suspend fun getByBarcode(barcode: String): EksemplarBuku?
 
+    @Query("SELECT * FROM eksemplar_buku WHERE barcode = :query OR buku_id IN (SELECT id FROM buku WHERE judul LIKE '%' || :query || '%' OR penulis LIKE '%' || :query || '%')")
+    suspend fun searchEksemplarSync(query: String): List<EksemplarBuku>
+
     @Query("SELECT * FROM eksemplar_buku WHERE buku_id = :bukuId ORDER BY barcode ASC")
     fun getByBukuId(bukuId: Int): LiveData<List<EksemplarBuku>>
 

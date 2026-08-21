@@ -63,12 +63,62 @@ class PeminjamanFragment : Fragment() {
             scannerLauncher.launch(intent)
         }
 
+        binding.btnCariSiswa.setOnClickListener {
+            val query = binding.etCariSiswa.text.toString().trim()
+            if (query.isNotEmpty()) {
+                viewModel.searchSiswa(query)
+                binding.etCariSiswa.setText("")
+            } else {
+                Toast.makeText(requireContext(), "Masukkan nama atau barcode pengunjung", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.etCariSiswa.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH ||
+                actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE
+            ) {
+                val query = binding.etCariSiswa.text.toString().trim()
+                if (query.isNotEmpty()) {
+                    viewModel.searchSiswa(query)
+                    binding.etCariSiswa.setText("")
+                }
+                true
+            } else {
+                false
+            }
+        }
+
         binding.btnScanBuku.setOnClickListener {
             scanMode = "buku"
             val intent = Intent(requireContext(), ScannerActivity::class.java).apply {
                 putExtra(ScannerActivity.EXTRA_IS_CONTINUOUS, true)
             }
             scannerLauncher.launch(intent)
+        }
+
+        binding.btnCariBuku.setOnClickListener {
+            val query = binding.etCariBarcode.text.toString().trim()
+            if (query.isNotEmpty()) {
+                viewModel.searchBook(query)
+                binding.etCariBarcode.setText("")
+            } else {
+                Toast.makeText(requireContext(), "Masukkan nama atau barcode buku", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.etCariBarcode.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH ||
+                actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE
+            ) {
+                val query = binding.etCariBarcode.text.toString().trim()
+                if (query.isNotEmpty()) {
+                    viewModel.searchBook(query)
+                    binding.etCariBarcode.setText("")
+                }
+                true
+            } else {
+                false
+            }
         }
 
         binding.btnProses.setOnClickListener {
@@ -117,6 +167,44 @@ class PeminjamanFragment : Fragment() {
                 is Resource.Error -> {
                     Toast.makeText(requireContext(), result.message, Toast.LENGTH_LONG).show()
                 }
+            }
+        }
+
+        viewModel.visitorSearchResults.observe(viewLifecycleOwner) { list ->
+            if (list != null && list.isNotEmpty()) {
+                val items = list.map { "${it.namaSiswa} (${if (it.tipe == "umum") "Umum" else "Siswa"} - ${it.nomorKartu})" }.toTypedArray()
+                com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Pilih Pengunjung")
+                    .setItems(items) { _, which ->
+                        viewModel.selectSiswa(list[which])
+                    }
+                    .setNegativeButton("Batal") { dialog, _ ->
+                        viewModel.clearSearchResults()
+                        dialog.dismiss()
+                    }
+                    .setOnCancelListener {
+                        viewModel.clearSearchResults()
+                    }
+                    .show()
+            }
+        }
+
+        viewModel.bookSearchResults.observe(viewLifecycleOwner) { list ->
+            if (list != null && list.isNotEmpty()) {
+                val items = list.map { it.second }.toTypedArray()
+                com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Pilih Buku")
+                    .setItems(items) { _, which ->
+                        viewModel.selectEksemplar(list[which].first)
+                    }
+                    .setNegativeButton("Batal") { dialog, _ ->
+                        viewModel.clearSearchResults()
+                        dialog.dismiss()
+                    }
+                    .setOnCancelListener {
+                        viewModel.clearSearchResults()
+                    }
+                    .show()
             }
         }
     }

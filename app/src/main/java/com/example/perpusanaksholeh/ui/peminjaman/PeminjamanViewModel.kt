@@ -45,6 +45,69 @@ class PeminjamanViewModel(application: Application) : AndroidViewModel(applicati
     private val _pengembalianDetail = MutableLiveData<PeminjamanDetail?>()
     val pengembalianDetail: LiveData<PeminjamanDetail?> = _pengembalianDetail
 
+    private val _visitorSearchResults = MutableLiveData<List<Siswa>?>()
+    val visitorSearchResults: LiveData<List<Siswa>?> = _visitorSearchResults
+
+    private val _bookSearchResults = MutableLiveData<List<Pair<EksemplarBuku, String>>?>()
+    val bookSearchResults: LiveData<List<Pair<EksemplarBuku, String>>?> = _bookSearchResults
+
+    fun selectSiswa(siswa: Siswa) {
+        _selectedSiswa.value = siswa
+        _visitorSearchResults.value = null
+    }
+
+    fun selectEksemplar(eksemplar: EksemplarBuku) = viewModelScope.launch {
+        val currentList = _selectedEksemplars.value?.toMutableList() ?: mutableListOf()
+        if (currentList.any { it.barcode == eksemplar.barcode }) {
+            _operationResult.value = Resource.Error("Buku dengan barcode '${eksemplar.barcode}' sudah dipilih")
+            return@launch
+        }
+        if (eksemplar.status == EksemplarBuku.STATUS_DIPINJAM) {
+            _operationResult.value = Resource.Error("Buku dengan barcode '${eksemplar.barcode}' sedang dipinjam")
+            return@launch
+        }
+        currentList.add(eksemplar)
+        _selectedEksemplars.value = currentList
+        _selectedEksemplar.value = currentList.firstOrNull()
+        rebuildBukuTitles(currentList)
+        _bookSearchResults.value = null
+    }
+
+    fun searchSiswa(query: String) = viewModelScope.launch {
+        val list = database.siswaDao().searchSiswaSync(query)
+        if (list.isEmpty()) {
+            _operationResult.value = Resource.Error("Pengunjung dengan nama/barcode '$query' tidak ditemukan")
+        } else if (list.size == 1) {
+            _selectedSiswa.value = list[0]
+            _visitorSearchResults.value = null
+        } else {
+            _visitorSearchResults.value = list
+        }
+    }
+
+    fun searchBook(query: String) = viewModelScope.launch {
+        val list = database.eksemplarBukuDao().searchEksemplarSync(query)
+        if (list.isEmpty()) {
+            _operationResult.value = Resource.Error("Buku dengan nama/barcode '$query' tidak ditemukan")
+        } else if (list.size == 1) {
+            selectEksemplar(list[0])
+            _bookSearchResults.value = null
+        } else {
+            val resultList = mutableListOf<Pair<EksemplarBuku, String>>()
+            for (eksemplar in list) {
+                val buku = bukuRepository.getBukuById(eksemplar.bukuId)
+                val judul = buku?.judul ?: "Unknown"
+                resultList.add(Pair(eksemplar, "$judul (${eksemplar.barcode})"))
+            }
+            _bookSearchResults.value = resultList
+        }
+    }
+
+    fun clearSearchResults() {
+        _visitorSearchResults.value = null
+        _bookSearchResults.value = null
+    }
+
     fun findSiswaByBarcode(barcode: String) = viewModelScope.launch {
         val siswa = siswaRepository.getByBarcode(barcode)
         _selectedSiswa.value = siswa
@@ -56,32 +119,49 @@ class PeminjamanViewModel(application: Application) : AndroidViewModel(applicati
     fun findEksemplarByBarcode(barcode: String) = findMultipleEksemplarsByBarcodes(listOf(barcode))
 
     fun findMultipleEksemplarsByBarcodes(barcodes: List<String>) = viewModelScope.launch {
-        val list = mutableListOf<EksemplarBuku>()
-        val titles = StringBuilder()
+        val currentList = _selectedEksemplars.value?.toMutableList() ?: mutableListOf()
+        val errorMessages = mutableListOf<String>()
 
         for (barcode in barcodes) {
+            if (currentList.any { it.barcode == barcode }) {
+                errorMessages.add("Buku dengan barcode '$barcode' sudah dipilih")
+                continue
+            }
+
             val eksemplar = bukuRepository.getEksemplarByBarcode(barcode)
             if (eksemplar != null) {
                 if (eksemplar.status == EksemplarBuku.STATUS_DIPINJAM) {
-                    _operationResult.value = Resource.Error("Buku dengan barcode '$barcode' sedang dipinjam")
+                    errorMessages.add("Buku dengan barcode '$barcode' sedang dipinjam")
                     continue
                 }
-                list.add(eksemplar)
-                val buku = bukuRepository.getBukuById(eksemplar.bukuId)
-                val judul = buku?.judul ?: "Unknown"
-                titles.append("• $judul ($barcode)\n")
+                currentList.add(eksemplar)
             } else {
-                _operationResult.value = Resource.Error("Buku dengan barcode '$barcode' tidak ditemukan")
+                errorMessages.add("Buku dengan barcode '$barcode' tidak ditemukan")
             }
         }
 
-        _selectedEksemplars.value = list
-        _selectedEksemplar.value = list.firstOrNull()
-        if (list.isNotEmpty()) {
-            _bukuJudul.value = titles.toString().trim()
-        } else {
-            _bukuJudul.value = null
+        _selectedEksemplars.value = currentList
+        _selectedEksemplar.value = currentList.firstOrNull()
+        
+        rebuildBukuTitles(currentList)
+
+        if (errorMessages.isNotEmpty()) {
+            _operationResult.value = Resource.Error(errorMessages.joinToString("\n"))
         }
+    }
+
+    private fun rebuildBukuTitles(list: List<EksemplarBuku>) = viewModelScope.launch {
+        if (list.isEmpty()) {
+            _bukuJudul.value = null
+            return@launch
+        }
+        val titles = java.lang.StringBuilder()
+        for (eksemplar in list) {
+            val buku = bukuRepository.getBukuById(eksemplar.bukuId)
+            val judul = buku?.judul ?: "Unknown"
+            titles.append("• $judul (${eksemplar.barcode})\n")
+        }
+        _bukuJudul.value = titles.toString().trim()
     }
 
     fun pinjamBuku(durasiHari: Int = Peminjaman.DURASI_DEFAULT_HARI) = viewModelScope.launch {

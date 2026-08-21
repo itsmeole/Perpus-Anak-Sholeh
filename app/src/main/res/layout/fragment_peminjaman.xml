@@ -43,6 +43,44 @@
                     android:textColor="@color/text_primary"
                     android:layout_marginBottom="@dimen/spacing_sm" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/spacing_sm">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilCariSiswa"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Cari Pengunjung (Nama/Barcode)"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusTopStart="@dimen/button_radius"
+                        app:boxCornerRadiusTopEnd="@dimen/button_radius"
+                        app:boxCornerRadiusBottomStart="@dimen/button_radius"
+                        app:boxCornerRadiusBottomEnd="@dimen/button_radius">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etCariSiswa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/btnCariSiswa"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:src="@drawable/ic_search"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:tint="@color/primary"
+                        android:contentDescription="Cari Pengunjung" />
+                </LinearLayout>
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnScanSiswa"
                     android:layout_width="match_parent"
@@ -108,20 +146,58 @@
                     android:textColor="@color/text_primary"
                     android:layout_marginBottom="@dimen/spacing_sm" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnScanBuku"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Scan Barcode Buku"
-                    android:textAllCaps="false"
-                    android:textColor="@color/primary_dark"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    app:icon="@drawable/ic_qr_scan"
-                    app:iconTint="@color/primary_dark"
-                    app:iconGravity="textStart"
-                    app:cornerRadius="@dimen/button_radius"
-                    app:strokeColor="@color/primary_dark"
-                    android:layout_marginBottom="@dimen/spacing_sm" />
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/spacing_sm">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilCariBarcode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Cari Barcode Buku"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusTopStart="@dimen/button_radius"
+                        app:boxCornerRadiusTopEnd="@dimen/button_radius"
+                        app:boxCornerRadiusBottomStart="@dimen/button_radius"
+                        app:boxCornerRadiusBottomEnd="@dimen/button_radius">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etCariBarcode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/btnCariBuku"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:src="@drawable/ic_search"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:tint="@color/primary"
+                        android:contentDescription="Cari Buku" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                     android:id="@+id/btnScanBuku"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Scan Barcode Buku"
+                     android:textAllCaps="false"
+                     android:textColor="@color/primary_dark"
+                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                     app:icon="@drawable/ic_qr_scan"
+                     app:iconTint="@color/primary_dark"
+                     app:iconGravity="textStart"
+                     app:cornerRadius="@dimen/button_radius"
+                     app:strokeColor="@color/primary_dark"
+                     android:layout_marginBottom="@dimen/spacing_sm" />
 
                 <LinearLayout
                     android:id="@+id/layoutBukuInfo"
@@ -134,7 +210,7 @@
 
                     <TextView
                         android:id="@+id/tvBukuJudul"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_subtitle"
                         android:textStyle="bold"
