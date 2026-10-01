@@ -38,10 +38,12 @@ class EksemplarAdapter(
                 EksemplarBuku.STATUS_TERSEDIA -> {
                     binding.tvStatus.text = "Tersedia"
                     binding.tvStatus.setBackgroundResource(R.drawable.bg_status_tersedia)
+                    binding.tvStatus.setTextColor(androidx.core.content.ContextCompat.getColor(binding.root.context, R.color.status_tersedia))
                 }
                 EksemplarBuku.STATUS_DIPINJAM -> {
                     binding.tvStatus.text = "Dipinjam"
                     binding.tvStatus.setBackgroundResource(R.drawable.bg_status_dipinjam)
+                    binding.tvStatus.setTextColor(androidx.core.content.ContextCompat.getColor(binding.root.context, R.color.status_dipinjam))
                 }
             }
 

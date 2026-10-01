@@ -1,54 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors - Teal Theme -->
-    <color name="primary">#2B7D77</color>
-    <color name="primary_light">#EAF4F3</color>
-    <color name="primary_dark">#1D5450</color>
-    <color name="primary_variant">#246964</color>
+    <!-- Primary Colors - Deep Forest Teal -->
+    <color name="primary">#0F7265</color>
+    <color name="primary_light">#D0EDE9</color>
+    <color name="primary_dark">#094F46</color>
+    <color name="primary_variant">#0A6257</color>
+    <color name="primary_container">#E6F4F2</color>
 
-    <!-- Secondary Colors -->
-    <color name="secondary">#FFFFD54F</color>
-    <color name="secondary_light">#FFFFE082</color>
-    <color name="secondary_dark">#FFFFA000</color>
+    <!-- Secondary Accent - Warm Amber -->
+    <color name="secondary">#E8900A</color>
+    <color name="secondary_light">#FEF0D3</color>
+    <color name="secondary_dark">#B36A00</color>
 
-    <!-- Background Colors -->
-    <color name="background">#FFF7F9FA</color>
-    <color name="surface">#FFFFFFFF</color>
-    <color name="card_background">#FFFFFFFF</color>
+    <!-- Background & Surfaces -->
+    <color name="background">#F5F7F9</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F0F4F3</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_border">#E8EEED</color>
 
-    <!-- Text Colors -->
-    <color name="text_primary">#FF1A1C1E</color>
-    <color name="text_secondary">#FF5F6368</color>
-    <color name="text_on_primary">#FFFFFFFF</color>
-    <color name="text_hint">#FFA8AAAA</color>
+    <!-- Text Colors (Slate scale, warm-tinted) -->
+    <color name="text_primary">#111827</color>
+    <color name="text_secondary">#5F6B7A</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_hint">#9BA8B5</color>
+    <color name="text_label">#374151</color>
 
     <!-- Status Colors -->
-    <color name="status_tersedia">#FF4CAF50</color>
-    <color name="status_dipinjam">#FFFF9800</color>
-    <color name="status_terlambat">#FFF44336</color>
-    <color name="status_dikembalikan">#FF2196F3</color>
+    <color name="status_tersedia">#047857</color>
+    <color name="status_tersedia_bg">#ECFDF5</color>
+    <color name="status_tersedia_border">#6EE7B7</color>
 
-    <!-- Dashboard Card Colors (Clean Gray Backgrounds and Teal Texts) -->
-    <color name="card_siswa_bg">#FFF7F7F7</color>
-    <color name="card_siswa_text">#FF2B7D77</color>
+    <color name="status_dipinjam">#B45309</color>
+    <color name="status_dipinjam_bg">#FFFBEB</color>
+    <color name="status_dipinjam_border">#FCD34D</color>
 
-    <color name="card_buku_bg">#FFF7F7F7</color>
-    <color name="card_buku_text">#FF2B7D77</color>
+    <color name="status_terlambat">#B91C1C</color>
+    <color name="status_terlambat_bg">#FEF2F2</color>
+    <color name="status_terlambat_border">#FCA5A5</color>
 
-    <color name="card_peminjaman_bg">#FFF7F7F7</color>
-    <color name="card_peminjaman_text">#FF2B7D77</color>
+    <color name="status_dikembalikan">#0369A1</color>
+    <color name="status_dikembalikan_bg">#F0F9FF</color>
+    <color name="status_dikembalikan_border">#7DD3FC</color>
 
-    <color name="card_terlambat_bg">#FFF7F7F7</color>
-    <color name="card_terlambat_text">#FF2B7D77</color>
+    <!-- Neutral Badge -->
+    <color name="badge_neutral_bg">#F1F5F9</color>
+    <color name="badge_neutral_text">#475569</color>
+    <color name="badge_neutral_border">#E2E8F0</color>
 
-    <color name="card_eksemplar_bg">#FFF7F7F7</color>
-    <color name="card_eksemplar_text">#FF2B7D77</color>
+    <!-- Dashboard Cards — each with distinct identity -->
+    <!-- Siswa: Teal (brand) -->
+    <color name="card_siswa_bg">#E6F4F2</color>
+    <color name="card_siswa_icon_bg">#0F7265</color>
+    <color name="card_siswa_text">#094F46</color>
 
-    <!-- Other -->
-    <color name="divider">#FFE6E6E6</color>
-    <color name="ripple">#15000000</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="scanner_overlay">#80000000</color>
-    <color name="scanner_frame">#2B7D77</color>
+    <!-- Buku: Amber -->
+    <color name="card_buku_bg">#FEF0D3</color>
+    <color name="card_buku_icon_bg">#E8900A</color>
+    <color name="card_buku_text">#7A4800</color>
+
+    <!-- Eksemplar: Indigo -->
+    <color name="card_eksemplar_bg">#EEF2FF</color>
+    <color name="card_eksemplar_icon_bg">#4F46E5</color>
+    <color name="card_eksemplar_text">#312E81</color>
+
+    <!-- Peminjaman: Rose -->
+    <color name="card_peminjaman_bg">#FFF1F2</color>
+    <color name="card_peminjaman_icon_bg">#E11D48</color>
+    <color name="card_peminjaman_text">#881337</color>
+
+    <!-- Terlambat alert card -->
+    <color name="card_terlambat_bg">#FEF2F2</color>
+    <color name="card_terlambat_text">#B91C1C</color>
+
+    <!-- Utilities -->
+    <color name="divider">#EAEFF2</color>
+    <color name="ripple">#140F7265</color>
+    <color name="black">#111827</color>
+    <color name="white">#FFFFFF</color>
+    <color name="scanner_overlay">#B3111827</color>
+    <color name="scanner_frame">#0F7265</color>
+
+    <!-- Toolbar gradient start/end -->
+    <color name="toolbar_start">#0F7265</color>
+    <color name="toolbar_end">#094F46</color>
+
+    <!-- Separator / section header background -->
+    <color name="section_header_bg">#F0F4F3</color>
 </resources>

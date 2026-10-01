@@ -2,15 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <!-- Tab buttons -->
+    <!-- Action Buttons Row -->
     <LinearLayout
         android:id="@+id/layoutTabs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/spacing_sm"
+        android:padding="16dp"
+        android:background="@color/surface"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -18,24 +20,31 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPinjam"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_marginEnd="6dp"
             android:text="Pinjam"
             android:textAllCaps="false"
-            app:cornerRadius="@dimen/button_radius" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/primary"
+            app:cornerRadius="12dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnKembali"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:layout_marginHorizontal="@dimen/spacing_xs"
+            android:layout_marginStart="6dp"
             android:text="Kembali"
             android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textColor="@color/primary"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            app:cornerRadius="@dimen/button_radius"
-            app:strokeColor="@color/primary" />
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="1.5dp" />
 
     </LinearLayout>
 
@@ -44,9 +53,12 @@
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/surface"
         app:tabMode="fixed"
         app:tabGravity="fill"
         app:tabSelectedTextColor="@color/primary"
+        app:tabIndicatorColor="@color/primary"
+        app:tabIndicatorHeight="2dp"
         app:tabTextColor="@color/text_secondary"
         app:layout_constraintTop_toBottomOf="@id/layoutTabs"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,13 +75,24 @@
             android:text="Riwayat" />
     </com.google.android.material.tabs.TabLayout>
 
+    <!-- Divider line -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/divider" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPeminjaman"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:padding="@dimen/spacing_sm"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout"
+        android:paddingTop="8dp"
+        android:paddingBottom="24dp"
+        app:layout_constraintTop_toBottomOf="@id/divider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -79,10 +102,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/data_kosong"
-        android:textSize="@dimen/text_subtitle"
-        android:textColor="@color/text_secondary"
+        android:textSize="15sp"
+        android:textColor="@color/text_hint"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout"
+        app:layout_constraintTop_toBottomOf="@id/divider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

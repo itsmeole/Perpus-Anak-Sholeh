@@ -29,6 +29,25 @@ class ScannerActivity : AppCompatActivity() {
     private var lastScannedBarcode: String? = null
     private var lastScanTime = 0L
 
+    private var pendingBarcode: String? = null
+    private var pendingCount = 0
+
+    private val barcodeScanner by lazy {
+        val options = com.google.mlkit.vision.barcode.BarcodeScannerOptions.Builder()
+            .setBarcodeFormats(
+                Barcode.FORMAT_EAN_13,
+                Barcode.FORMAT_EAN_8,
+                Barcode.FORMAT_CODE_128,
+                Barcode.FORMAT_CODE_39,
+                Barcode.FORMAT_UPC_A,
+                Barcode.FORMAT_UPC_E,
+                Barcode.FORMAT_CODABAR,
+                Barcode.FORMAT_QR_CODE
+            )
+            .build()
+        BarcodeScanning.getClient(options)
+    }
+
     companion object {
         const val EXTRA_SCAN_RESULT = "scan_result"
         const val EXTRA_IS_CONTINUOUS = "is_continuous"
@@ -111,6 +130,7 @@ class ScannerActivity : AppCompatActivity() {
 
             val imageAnalysis = ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .setTargetResolution(android.util.Size(1280, 720))
                 .build()
 
             imageAnalysis.setAnalyzer(cameraExecutor) { imageProxy ->
@@ -139,42 +159,47 @@ class ScannerActivity : AppCompatActivity() {
 
         val mediaImage = imageProxy.image
         if (mediaImage != null) {
-            val image = InputImage.fromMediaImage(
-                mediaImage,
-                imageProxy.imageInfo.rotationDegrees
-            )
+            val rotation = imageProxy.imageInfo.rotationDegrees
+            val image = InputImage.fromMediaImage(mediaImage, rotation)
 
-            val options = com.google.mlkit.vision.barcode.BarcodeScannerOptions.Builder()
-                .setBarcodeFormats(
-                    Barcode.FORMAT_EAN_13,
-                    Barcode.FORMAT_EAN_8,
-                    Barcode.FORMAT_CODE_128,
-                    Barcode.FORMAT_CODE_39,
-                    Barcode.FORMAT_UPC_A,
-                    Barcode.FORMAT_UPC_E,
-                    Barcode.FORMAT_CODABAR
-                )
-                .build()
-            val scanner = BarcodeScanning.getClient(options)
-            scanner.process(image)
+            val isRotated = rotation == 90 || rotation == 270
+            val effectiveWidth = if (isRotated) imageProxy.height else imageProxy.width
+            val effectiveHeight = if (isRotated) imageProxy.width else imageProxy.height
+
+            barcodeScanner.process(image)
                 .addOnSuccessListener { barcodes ->
                     for (barcode in barcodes) {
-                        val rawValue = barcode.rawValue
-                        if (rawValue != null) {
+                        val rawValue = (barcode.displayValue ?: barcode.rawValue)?.trim()
+                        if (!rawValue.isNullOrEmpty()) {
                             val box = barcode.boundingBox
                             if (box != null) {
-                                val imgW = imageProxy.width
-                                val imgH = imageProxy.height
                                 val centerX = box.centerX()
                                 val centerY = box.centerY()
-                                val minX = imgW * 0.2
-                                val maxX = imgW * 0.8
-                                val minY = imgH * 0.2
-                                val maxY = imgH * 0.8
+                                val minX = effectiveWidth * 0.10
+                                val maxX = effectiveWidth * 0.90
+                                val minY = effectiveHeight * 0.10
+                                val maxY = effectiveHeight * 0.90
                                 if (centerX < minX || centerX > maxX || centerY < minY || centerY > maxY) {
                                     continue
                                 }
                             }
+
+                            // Multi-frame consensus: require 2 matching reads
+                            if (rawValue == pendingBarcode) {
+                                pendingCount++
+                            } else {
+                                pendingBarcode = rawValue
+                                pendingCount = 1
+                                continue
+                            }
+
+                            if (pendingCount < 2) {
+                                continue
+                            }
+
+                            // Reset pending after confirmation
+                            pendingBarcode = null
+                            pendingCount = 0
 
                             if (isContinuous) {
                                 if (scannedBarcodes.contains(rawValue)) {
@@ -227,5 +252,10 @@ class ScannerActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
+        try {
+            barcodeScanner.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

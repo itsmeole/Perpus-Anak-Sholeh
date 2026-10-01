@@ -44,14 +44,17 @@ class PeminjamanAdapter : ListAdapter<PeminjamanDetail, PeminjamanAdapter.Peminj
                 Peminjaman.STATUS_DIPINJAM -> {
                     binding.tvStatus.text = "Dipinjam"
                     binding.tvStatus.setBackgroundResource(R.drawable.bg_status_dipinjam)
+                    binding.tvStatus.setTextColor(androidx.core.content.ContextCompat.getColor(binding.root.context, R.color.status_dipinjam))
                 }
                 Peminjaman.STATUS_TERLAMBAT -> {
                     binding.tvStatus.text = "Terlambat"
                     binding.tvStatus.setBackgroundResource(R.drawable.bg_status_terlambat)
+                    binding.tvStatus.setTextColor(androidx.core.content.ContextCompat.getColor(binding.root.context, R.color.status_terlambat))
                 }
                 Peminjaman.STATUS_DIKEMBALIKAN -> {
                     binding.tvStatus.text = "Dikembalikan"
                     binding.tvStatus.setBackgroundResource(R.drawable.bg_status_dikembalikan)
+                    binding.tvStatus.setTextColor(androidx.core.content.ContextCompat.getColor(binding.root.context, R.color.status_dikembalikan))
                 }
             }
 

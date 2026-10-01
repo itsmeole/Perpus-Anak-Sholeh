@@ -1,236 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_md">
+        android:orientation="vertical">
 
-        <!-- Header -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Perpus Anak Sholeh"
-            android:textSize="@dimen/text_title"
-            android:textStyle="bold"
-            android:textColor="@color/primary_dark"
-            android:layout_marginBottom="4dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Selamat datang di Sistem Manajemen Perpustakaan"
-            android:textSize="@dimen/text_caption"
-            android:textColor="@color/text_secondary"
-            android:layout_marginBottom="@dimen/spacing_md" />
-
-        <!-- Stats Row 1 -->
+        <!-- Header Banner -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/spacing_sm">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="@color/primary">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="@dimen/spacing_xs"
-                app:cardCornerRadius="@dimen/card_radius"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/card_siswa_bg"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
+                android:text="Perpus Anak Sholeh"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:letterSpacing="-0.02" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/spacing_md">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_person"
-                        app:tint="@color/card_siswa_text"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:id="@+id/tvTotalSiswa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="@dimen/text_dashboard_number"
-                        android:textStyle="bold"
-                        android:textColor="@color/card_siswa_text" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/total_siswa"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/card_siswa_text" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/spacing_xs"
-                app:cardCornerRadius="@dimen/card_radius"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/card_buku_bg"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/spacing_md">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_book"
-                        app:tint="@color/card_buku_text"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:id="@+id/tvTotalBuku"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="@dimen/text_dashboard_number"
-                        android:textStyle="bold"
-                        android:textColor="@color/card_buku_text" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/total_buku"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/card_buku_text" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                android:text="Sistem Manajemen Perpustakaan"
+                android:textSize="13sp"
+                android:textColor="#AADDD8"
+                android:layout_marginTop="2dp" />
         </LinearLayout>
 
-        <!-- Stats Row 2 -->
+        <!-- Stats Grid -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/spacing_sm">
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
+            <!-- Stats Row 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="@dimen/spacing_xs"
-                app:cardCornerRadius="@dimen/card_radius"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/card_eksemplar_bg"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <!-- Siswa Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/spacing_md">
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_siswa_bg"
+                    app:strokeWidth="0dp">
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_copy"
-                        app:tint="@color/card_eksemplar_text"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:id="@+id/tvTotalEksemplar"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="@dimen/text_dashboard_number"
-                        android:textStyle="bold"
-                        android:textColor="@color/card_eksemplar_text" />
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle"
+                            android:backgroundTint="@color/card_siswa_icon_bg"
+                            android:layout_marginBottom="10dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_person"
+                                app:tint="@color/white"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvTotalSiswa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/card_siswa_text"
+                            android:letterSpacing="-0.02" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_siswa"
+                            android:textSize="12sp"
+                            android:textColor="@color/card_siswa_text"
+                            android:alpha="0.75" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Buku Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_buku_bg"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/total_eksemplar"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/card_eksemplar_text" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle"
+                            android:backgroundTint="@color/card_buku_icon_bg"
+                            android:layout_marginBottom="10dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_book"
+                                app:tint="@color/white"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvTotalBuku"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/card_buku_text"
+                            android:letterSpacing="-0.02" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_buku"
+                            android:textSize="12sp"
+                            android:textColor="@color/card_buku_text"
+                            android:alpha="0.75" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Stats Row 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/spacing_xs"
-                app:cardCornerRadius="@dimen/card_radius"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/card_peminjaman_bg"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
+                android:orientation="horizontal"
+                android:layout_marginBottom="14dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <!-- Eksemplar Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/spacing_md">
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_eksemplar_bg"
+                    app:strokeWidth="0dp">
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_swap"
-                        app:tint="@color/card_peminjaman_text"
-                        android:layout_marginBottom="8dp" />
-
-                    <TextView
-                        android:id="@+id/tvPeminjamanAktif"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="@dimen/text_dashboard_number"
-                        android:textStyle="bold"
-                        android:textColor="@color/card_peminjaman_text" />
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle"
+                            android:backgroundTint="@color/card_eksemplar_icon_bg"
+                            android:layout_marginBottom="10dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_copy"
+                                app:tint="@color/white"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvTotalEksemplar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/card_eksemplar_text"
+                            android:letterSpacing="-0.02" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_eksemplar"
+                            android:textSize="12sp"
+                            android:textColor="@color/card_eksemplar_text"
+                            android:alpha="0.75" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Peminjaman Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_peminjaman_bg"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/peminjaman_aktif"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/card_peminjaman_text" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle"
+                            android:backgroundTint="@color/card_peminjaman_icon_bg"
+                            android:layout_marginBottom="10dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_swap"
+                                app:tint="@color/white"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/tvPeminjamanAktif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/card_peminjaman_text"
+                            android:letterSpacing="-0.02" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/peminjaman_aktif"
+                            android:textSize="12sp"
+                            android:textColor="@color/card_peminjaman_text"
+                            android:alpha="0.75" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Terlambat Card -->
+        <!-- Terlambat Alert Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_md"
-            app:cardCornerRadius="@dimen/card_radius"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:cardBackgroundColor="@color/card_terlambat_bg"
+            app:strokeWidth="0dp"
             xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/spacing_md"
+                android:padding="16dp"
                 android:gravity="center_vertical">
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_warning"
-                    app:tint="@color/card_terlambat_text"
-                    android:layout_marginEnd="@dimen/spacing_md" />
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_icon_circle"
+                    android:backgroundTint="@color/status_terlambat"
+                    android:layout_marginEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_warning"
+                        app:tint="@color/white"
+                        android:layout_gravity="center" />
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -242,16 +317,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/buku_terlambat"
-                        android:textSize="@dimen/text_subtitle"
+                        android:textSize="14sp"
                         android:textColor="@color/card_terlambat_text"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Buku yang belum dikembalikan"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/card_terlambat_text" />
+                        android:text="Buku belum dikembalikan tepat waktu"
+                        android:textSize="12sp"
+                        android:textColor="@color/card_terlambat_text"
+                        android:alpha="0.7" />
                 </LinearLayout>
 
                 <TextView
@@ -259,109 +335,132 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="@dimen/text_dashboard_number"
+                    android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="@color/card_terlambat_text" />
+                    android:textColor="@color/card_terlambat_text"
+                    android:letterSpacing="-0.02" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Quick Actions -->
+        <!-- Section: Quick Actions -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aksi Cepat"
-            android:textSize="@dimen/text_subtitle"
+            android:text="Aksi cepat"
+            android:textSize="13sp"
+            android:textAllCaps="false"
             android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="@dimen/spacing_sm" />
+            android:textColor="@color/text_secondary"
+            android:letterSpacing="0.04"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/spacing_md">
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="20dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPinjamBuku"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="@dimen/spacing_xs"
-                android:text="Pinjam Buku"
+                android:layout_marginEnd="6dp"
+                android:text="Pinjam buku"
                 android:textAllCaps="false"
-                android:textColor="@color/text_on_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
                 app:icon="@drawable/ic_book"
-                app:iconTint="@color/text_on_primary"
+                app:iconTint="@color/white"
                 app:iconGravity="textStart"
-                app:cornerRadius="@dimen/button_radius"
+                app:iconPadding="6dp"
+                app:cornerRadius="12dp"
+                app:backgroundTint="@color/primary"
                 xmlns:app="http://schemas.android.com/apk/res-auto" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnKembalikanBuku"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/spacing_xs"
+                android:layout_marginStart="6dp"
                 android:text="Kembalikan"
                 android:textAllCaps="false"
-                android:textColor="@color/primary_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:icon="@drawable/ic_arrow_back"
-                app:iconTint="@color/primary_dark"
+                app:iconTint="@color/primary"
                 app:iconGravity="textStart"
-                app:cornerRadius="@dimen/button_radius"
-                app:strokeColor="@color/primary_dark"
+                app:iconPadding="6dp"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/primary"
+                app:strokeWidth="1.5dp"
                 xmlns:app="http://schemas.android.com/apk/res-auto" />
         </LinearLayout>
 
-        <!-- Backup & Pemulihan -->
+        <!-- Section: Backup -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Backup &amp; Pemulihan"
-            android:textSize="@dimen/text_subtitle"
+            android:text="Backup &amp; pemulihan"
+            android:textSize="13sp"
+            android:textAllCaps="false"
             android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="@dimen/spacing_sm" />
+            android:textColor="@color/text_secondary"
+            android:letterSpacing="0.04"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/spacing_md">
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="24dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnExportData"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="@dimen/spacing_xs"
-                android:text="Ekspor Data"
+                android:layout_marginEnd="6dp"
+                android:text="Ekspor data"
                 android:textAllCaps="false"
-                android:textColor="@color/primary_dark"
+                android:textSize="14sp"
+                android:textColor="@color/text_label"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:icon="@drawable/ic_export"
-                app:iconTint="@color/primary_dark"
+                app:iconTint="@color/text_label"
                 app:iconGravity="textStart"
-                app:strokeColor="@color/primary_dark"
-                app:cornerRadius="@dimen/button_radius"
+                app:iconPadding="6dp"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/card_border"
+                app:strokeWidth="1dp"
                 xmlns:app="http://schemas.android.com/apk/res-auto" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnImportData"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/spacing_xs"
-                android:text="Impor Data"
+                android:layout_marginStart="6dp"
+                android:text="Impor data"
                 android:textAllCaps="false"
-                android:textColor="@color/secondary_dark"
+                android:textSize="14sp"
+                android:textColor="@color/text_label"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:icon="@drawable/ic_import"
-                app:iconTint="@color/secondary_dark"
+                app:iconTint="@color/text_label"
                 app:iconGravity="textStart"
-                app:strokeColor="@color/secondary_dark"
-                app:cornerRadius="@dimen/button_radius"
+                app:iconPadding="6dp"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/card_border"
+                app:strokeWidth="1dp"
                 xmlns:app="http://schemas.android.com/apk/res-auto" />
         </LinearLayout>
 
